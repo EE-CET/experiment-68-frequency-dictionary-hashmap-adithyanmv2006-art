@@ -3,17 +3,24 @@ import java.util.*;
 public class Solution {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        LinkedHashMap<String,Integer> wordCount = new LinkedHashMap<>();
 
         String line = sc.nextLine();
         String[] words = line.split(" ");
 
-        for(String word : words){
-            wordCount.put(word, wordCount.getOrDefault(word,0)+1);
+        HashMap<String, Integer> map = new HashMap<>();
+
+        for (String word : words) {
+            if (map.containsKey(word)) {
+                map.put(word, map.get(word) + 1);
+            } else {
+                map.put(word, 1);
+            }
         }
 
-        for(Map.Entry<String,Integer> entry : wordCount.entrySet()){
-            System.out.println(entry.getKey()+": "+entry.getValue());
+        for (String key : map.keySet()) {
+            System.out.println(key + ": " + map.get(key));
         }
+
+        sc.close();
     }
 }
